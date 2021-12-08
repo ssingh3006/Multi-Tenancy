@@ -1,5 +1,5 @@
 export class TenantConfigDto{
-    tenantId: string;
+    tenantId: number;
     tenantName: string;
     tenantDbName: string;
     description: string;

@@ -6,23 +6,23 @@ export class TenantConfig{
     id: string;
 
     @Column()
-    tenantId: string;
+    tenantId: number;
 
     @Column()
     tenantName: string;
 
     @Column()
-    tenantDbName: string;
-
-    @Column()
     description: string;
 
-    @Column({type: "datetime"})
+    @Column()
     createdDateTime: string;
+
+    @Column()
+    tenantDbName: string;
 
     @Column()
     host: string;
 
-    @Column({type: "int"})
+    @Column()
     port: number;
 }

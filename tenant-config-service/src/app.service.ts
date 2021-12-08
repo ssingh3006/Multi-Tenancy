@@ -6,15 +6,15 @@ import { TenantConfig } from './entities/tenant.entity';
 
 @Injectable()
 export class AppService {
-  constructor(@InjectRepository(TenantConfig) private readonly configRepository: Repository<TenantConfig>){}
+  constructor(@InjectRepository(TenantConfig) private readonly configRepository: Repository<TenantConfig>) { }
 
-  async setConfig(tenantconfig: TenantConfigDto){
+  async setConfig(tenantconfig: TenantConfigDto) {
     return await this.configRepository.save(tenantconfig);
   }
 
-  async getConfig(tenantId: string){
+  async getConfig(tenantId: number) {
     return await this.configRepository.findOneOrFail({
-      where:{
+      where: {
         tenantId: tenantId,
       }
     });

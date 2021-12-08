@@ -16,10 +16,7 @@ export class RegistertenantController {
           'status': 'this tenant already exists'
         }
       }
-      return {
-        'status': 'tenant registered successfully',
-        'tenant-details': (await this.tenantService.register(tenant))
-      }
+      return await this.tenantService.register(tenant);
     } catch (e) {
       return e;
     }

@@ -18,6 +18,6 @@ export class Tenant {
   @Column()
   description:string
 
-  @Column({type:'datetime'})
+  @Column()
   createdDateTime:string
 }

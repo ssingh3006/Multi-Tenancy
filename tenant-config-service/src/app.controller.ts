@@ -20,7 +20,7 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'get_config' })
-  async getConfig(tenantId: string) {
+  async getConfig(tenantId: number) {
     return await this.appService.getConfig(tenantId);
   }
 }

@@ -7,7 +7,7 @@ import { TenantprovisionService } from './tenantprovision.service';
 
 @Controller('tenantprovision')
 export class TenantprovisionController {
-    constructor(private readonly provisionService: TenantprovisionService){}
+    constructor(private readonly provisionService: TenantprovisionService) { }
 
     @MessagePattern({ cmd: 'create-database' })
     async createDatabase(tenant_name: ProvisionTenantDto) {
@@ -28,7 +28,7 @@ export class TenantprovisionController {
     }
 
     @MessagePattern({ cmd: 'seed' })
-    async seedData(data:SeedingDataeDto) {
+    async seedData(data: SeedingDataeDto) {
         try {
             return await this.provisionService.seed(data);
         } catch (e) {
@@ -37,7 +37,7 @@ export class TenantprovisionController {
     }
     
     @MessagePattern({ cmd: 'ping' })
-    async ping(tenantData:ProvisionTenantDto) {
+    async ping(tenantData: ProvisionTenantDto) {
         try {
             return await this.provisionService.ping(tenantData);
         } catch (e) {
