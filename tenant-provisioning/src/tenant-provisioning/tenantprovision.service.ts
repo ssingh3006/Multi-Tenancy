@@ -19,7 +19,7 @@ export class TenantprovisionService {
                     else {
                         res({
                             'status': 'Database created successfully',
-                            'database-name': 'db-' + tenant_name.tenantName
+                            'database_name': 'db-' + tenant_name.tenantName
                         })
                     }
 

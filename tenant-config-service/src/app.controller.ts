@@ -1,27 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
-import { EventPattern, MessagePattern } from '@nestjs/microservices';
-import { TenantConfig } from './entities/tenant.entity';
+import { MessagePattern } from '@nestjs/microservices';
 import { TenantConfigDto } from './dto/tenant.config.dto';
 
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @MessagePattern('message_printed')
   getConfigTenantService() {
     return 'Tenant config service created';
   }
 
-  @MessagePattern({cmd: 'set_config'})
+  @MessagePattern({ cmd: 'set_config' })
   // @EventPattern
-  async setConfig(tenantDetails: TenantConfigDto) {
-    await this.appService.setConfig(tenantDetails);
+  async setConfig(tenantconfig: TenantConfigDto) {
+    return await this.appService.setConfig(tenantconfig);
   }
 
-  @MessagePattern('get_config')
+  @MessagePattern({ cmd: 'get_config' })
   async getConfig(tenantId: string) {
-    await this.appService.getConfig(tenantId);    
+    return await this.appService.getConfig(tenantId);
   }
 }

@@ -27,15 +27,15 @@ export class RegistertenantService {
         // return await this.tenantRepository.save(tenant);
         const registered_tenant = await this.tenantRepository.save(tenant);
 
-        const TenantDetails: TenantDetailsDto = {
-
-            createdDateTime: registered_tenant.createdDateTime,
-            description: registered_tenant.description,
+        const tenantDetails: TenantDetailsDto = {
             tenantID: registered_tenant.id,
             tenantName: registered_tenant.tenantName,
+            description: registered_tenant.description,
+            createdDateTime: registered_tenant.createdDateTime,
         }
 
-        this.client.emit({ cmd: 'tenant-master-service' }, TenantDetails); // remove email and password from details
-        return TenantDetails; // remove this in future
+        // this.client.emit({ cmd: 'tenant-master-service' }, tenantDetails); // remove email and password from details
+        this.client.send({ cmd: 'tenant-master-service' }, tenantDetails); // remove email and password from details
+        return tenantDetails; // remove this in future
     }
 }

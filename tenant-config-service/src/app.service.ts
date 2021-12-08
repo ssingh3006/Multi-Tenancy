@@ -1,6 +1,4 @@
-import { Inject } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TenantConfigDto } from './dto/tenant.config.dto';
@@ -8,16 +6,14 @@ import { TenantConfig } from './entities/tenant.entity';
 
 @Injectable()
 export class AppService {
-  constructor(@InjectRepository(TenantConfig) private readonly configRepository: Repository<TenantConfig>,
-  @Inject('MASTER_TENANT_SERVICE') private client: ClientProxy
-  ){}
+  constructor(@InjectRepository(TenantConfig) private readonly configRepository: Repository<TenantConfig>){}
 
-  async setConfig(tenantDetails: TenantConfigDto){
-    await this.configRepository.save(tenantDetails);
+  async setConfig(tenantconfig: TenantConfigDto){
+    return await this.configRepository.save(tenantconfig);
   }
 
   async getConfig(tenantId: string){
-    await this.configRepository.findOneOrFail({
+    return await this.configRepository.findOneOrFail({
       where:{
         tenantId: tenantId,
       }

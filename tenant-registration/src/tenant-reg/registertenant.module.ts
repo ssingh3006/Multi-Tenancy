@@ -14,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       transport: Transport.TCP,
       options: {
         host: '127.0.0.1',
-        port: 9,
+        port: 8847,
       },
     },
     

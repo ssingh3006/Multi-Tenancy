@@ -1,7 +1,9 @@
-export class TenantDetails{
+export class TenantDetailsDto{
     tenantId: string;
     tenantName: string;
-    tenantDbName: string;
+    tenantDbName?: string;
     description: string;
     createdDateTime: string;
+    host?: string;
+    port?: number;
 }
